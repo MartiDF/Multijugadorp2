@@ -529,6 +529,7 @@ MonoBehaviour:
   minZoom: 5
   maxZoom: 20
   zoomLimiter: 10
+  cam: {fileID: 0}
 --- !u!81 &469891898
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1899,8 +1900,6 @@ MonoBehaviour:
   player2: {fileID: 0}
   initialPosition1: {fileID: 1043266619}
   initialPosition2: {fileID: 1403569639}
-  stopThreshold: 10
-  smoothSpeed: 0.25
 --- !u!81 &1753133498
 AudioListener:
   m_ObjectHideFlags: 0

@@ -55,34 +55,7 @@ public class AdaptiveFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        // Si no hi ha referències als jugadors, busca-les a la jerarquia
-        if (player1 == null)
-        {
-            GameObject foundPlayer1 = GameObject.Find("Player 1 (Clone)");
-            if (foundPlayer1 != null)
-            {
-                player1 = foundPlayer1.transform;
-            }
-
-            if (foundPlayer1 != null && player1 == null)
-            {
-                Debug.Log("Player 1 referenciat correctament.");
-            }
-        }
-
-        if (player2 == null)
-        {
-            GameObject foundPlayer2 = GameObject.Find("Player 2 (Clone)");
-            if (foundPlayer2 != null)
-            {
-                player2 = foundPlayer2.transform;
-            }
-            if (foundPlayer2 != null && player2 == null)
-            {
-                Debug.Log("Player 2 referenciat correctament.");
-            }
-        }
-
+        
         Vector3 targetPosition;
 
         if (player1 != null && player2 != null)
