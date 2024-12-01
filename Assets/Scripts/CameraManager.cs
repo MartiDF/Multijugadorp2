@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     public Camera followCamera;         // Assigna la càmera de seguiment no adaptativa
     public Camera adaptiveCamera;       // Assigna la càmera de seguiment adaptativa
     public Camera[] splitScreenCameras; // Assigna les càmeres per a pantalla dividida
+    public GameObject divider;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class CameraManager : MonoBehaviour
         {
             cam.gameObject.SetActive(false);
         }
+        divider.gameObject.SetActive(false);
 
         // Activar la càmera seleccionada
         switch (cameraType)
@@ -40,6 +42,7 @@ public class CameraManager : MonoBehaviour
                 {
                     cam.gameObject.SetActive(true);
                 }
+                divider.gameObject.SetActive(true);
                 break;
             default:
                 Debug.LogWarning("Tipus de càmera desconegut!");
