@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -9,7 +10,38 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset = new Vector3(0, 0, -10); // Offset per mantenir la càmera darrere
     public float smoothSpeed = 0.125f; // Velocitat de transició suau
 
-    void LateUpdate()
+    private void OnEnable()
+    {
+        // Subscriure's a l'esdeveniment
+        MultiplayerManager.OnPlayersSpawned += AssignPlayerToCamera;
+    }
+
+    private void OnDisable()
+    {
+        // Cancel·lar la subscripció a l'esdeveniment
+        MultiplayerManager.OnPlayersSpawned -= AssignPlayerToCamera;
+    }
+
+    private void AssignPlayerToCamera(Transform p1, Transform p2)
+    {
+        // Determina quin jugador ha de seguir aquesta càmera
+        if (gameObject.name == "SplitCamera1")
+        {
+            player = p1;
+            Debug.Log($"{gameObject.name} assignada a seguir {p1.name}");
+        }
+        else if (gameObject.name == "SplitCamera2")
+        {
+            player = p2;
+            Debug.Log($"{gameObject.name} assignada a seguir {p2.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} no és SplitCamera1 ni SplitCamera2.");
+        }
+    }
+
+    private void LateUpdate()
     {
         Vector3 targetPosition;
 
