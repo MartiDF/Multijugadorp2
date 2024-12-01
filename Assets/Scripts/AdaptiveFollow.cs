@@ -9,28 +9,14 @@ public class AdaptiveFollow : MonoBehaviour
     public Transform player2;
     public Transform initialPosition1; // Posició inicial del jugador 1
     public Transform initialPosition2; // Posició inicial del jugador 2
-    public float minZoom = 5f; // Zoom mínim de la càmera
-    public float maxZoom = 20f; // Zoom màxim de la càmera
-    public float zoomLimiter = 10f; // Limitador del zoom segons la distància
+    float minZoom = 5f; // Zoom mínim de la càmera
+    float maxZoom = 20f; // Zoom màxim de la càmera
+    public float zoomLimiter = 1f; // Limitador del zoom segons la distància
     public Camera cam;
-    private Vector3 initialCameraTarget; // Objectiu inicial de la càmera
-
-
 
     void Start()
     {
         cam = GetComponent<Camera>();
-
-        Debug.Log("NonAdaptiveFollow: MultiplayerManager.Instance és null? " + (MultiplayerManager.Instance == null));
-        // Calcular el punt inicial de la càmera entre les posicions inicials
-        if (initialPosition1 != null && initialPosition2 != null)
-        {
-            initialCameraTarget = (initialPosition1.position + initialPosition2.position) / 2;
-        }
-        else
-        {
-            Debug.LogError("Les posicions inicials no estan configurades correctament a l'Inspector.");
-        }
     }
 
     void OnEnable()
@@ -66,8 +52,9 @@ public class AdaptiveFollow : MonoBehaviour
 
             // Ajusta el zoom segons la distància entre els jugadors
             float distance = Vector3.Distance(player1.position, player2.position);
-            float zoom = Mathf.Lerp(maxZoom, minZoom, distance / zoomLimiter);
+            float zoom = Mathf.Lerp(minZoom, maxZoom, distance / zoomLimiter);
             cam.orthographicSize = Mathf.Clamp(zoom, minZoom, maxZoom);
+            //cam.orthographicSize = Mathf.Clamp(zoom, minZoom, maxZoom);
         }
         else if (initialPosition1 != null && initialPosition2 != null)
         {

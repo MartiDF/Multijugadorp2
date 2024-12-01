@@ -494,7 +494,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -527,9 +527,6 @@ MonoBehaviour:
   player2: {fileID: 8748471968247025682, guid: 035855777a6deb54eb59b10ea3bd8b98, type: 3}
   initialPosition1: {fileID: 1043266619}
   initialPosition2: {fileID: 1403569639}
-  minZoom: 5
-  maxZoom: 20
-  zoomLimiter: 10
   cam: {fileID: 0}
 --- !u!81 &469891898
 AudioListener:
